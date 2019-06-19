@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 
 namespace WebApplication6.Controllers
@@ -31,7 +32,7 @@ namespace WebApplication6.Controllers
 			if (id == 4)
 				name = "test";
 
-			return "value " + id + ", name " + name;
+			return "value " + id + ", name " + name + DateTime.Now;
 		}
 
 		// POST api/values
