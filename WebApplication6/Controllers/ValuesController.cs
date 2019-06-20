@@ -8,6 +8,8 @@ namespace WebApplication6.Controllers
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
+		private string _server = "172.17.0.15";
+
 		// GET api/values
 		[HttpGet]
 		public IEnumerable<string> Get()
@@ -16,9 +18,10 @@ namespace WebApplication6.Controllers
 		}
 
 		// GET api/values/5
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet("{id}/{server}")]
+		public string Get(int id, string server)
 		{
+			_server = server;
 			var name = "";
 			if (id == 1)
 				CreateItemTable();
@@ -32,7 +35,7 @@ namespace WebApplication6.Controllers
 			if (id == 4)
 				name = "test";
 
-			return "value " + id + ", name " + name + DateTime.Now;
+			return "value " + id + ", name " + name + DateTime.Now + " server " + _server;
 		}
 
 		// POST api/values
@@ -55,7 +58,7 @@ namespace WebApplication6.Controllers
 
 		private MySqlConnection GetConnection()
 		{
-			var connectionString = "Server=mysql-1-dxnp8;Port=3306;Database=sampledb;Uid=userFF2;Pwd=e7g0ERWRI0w8kntQ;charset=utf8;";
+			var connectionString = "Server=" + _server + ";Port=3306;Database=sampledb;Uid=userFF2;Pwd=e7g0ERWRI0w8kntQ;charset=utf8;";
 
 			return new MySqlConnection(connectionString);
 		}
