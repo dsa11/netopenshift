@@ -55,7 +55,7 @@ namespace WebApplication6.Controllers
 
 		private MySqlConnection GetConnection()
 		{
-			var connectionString = "Server=http://mysql-netproject.192.168.145.109.nip.io;Port=3306;Database=sampledb;Uid=userFF2;Pwd=e7g0ERWRI0w8kntQ;charset=utf8;";
+			var connectionString = "Server=172.30.100.5;Port=3306;Database=sampledb;Uid=userFF2;Pwd=e7g0ERWRI0w8kntQ;charset=utf8;";
 
 			return new MySqlConnection(connectionString);
 		}
