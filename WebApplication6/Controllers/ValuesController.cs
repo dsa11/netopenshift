@@ -8,7 +8,7 @@ namespace WebApplication6.Controllers
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
-		private string _server = "http://mysql-netproject.192.168.145.109.nip.io/";
+		private readonly string _server = "172.17.0.15";
 
 		// GET api/values
 		[HttpGet]
@@ -18,10 +18,9 @@ namespace WebApplication6.Controllers
 		}
 
 		// GET api/values/5
-		[HttpGet("{id}/{server}")]
-		public string Get(int id, string server)
+		[HttpGet("{id}")]
+		public string Get(int id)
 		{
-			_server = server;
 			var name = "";
 			if (id == 1)
 				CreateItemTable();
@@ -79,7 +78,8 @@ namespace WebApplication6.Controllers
 			using (var conn = GetConnection())
 			{
 				conn.Open();
-				var cmd = new MySqlCommand("INSERT INTO test (`Name`) VALUES ('Test Name')", conn);
+				string name = "test name " + new Random().Next(100);
+				var cmd = new MySqlCommand("INSERT INTO test (`Name`) VALUES ('" + name + "')", conn);
 				cmd.ExecuteNonQuery();
 
 			}
@@ -87,6 +87,7 @@ namespace WebApplication6.Controllers
 
 		public string GetItem()
 		{
+			string name = "";
 			using (var conn = GetConnection())
 			{
 				conn.Open();
@@ -95,13 +96,13 @@ namespace WebApplication6.Controllers
 				{
 					while (reader.Read())
 					{
-						var name = reader.GetString("Name");
+						name += reader.GetString("Name") + Environment.NewLine;
 
 					}
 				}
 			}
 
-			return "";
+			return name;
 		}
 	}
 }
