@@ -8,7 +8,7 @@ namespace WebApplication6.Controllers
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
-		private string _server = "172.17.0.15";
+		private string _server = "http://mysql-netproject.192.168.145.109.nip.io/";
 
 		// GET api/values
 		[HttpGet]
