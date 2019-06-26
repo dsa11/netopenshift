@@ -8,7 +8,7 @@ namespace WebApplication7.Controllers
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
-		private readonly string _server = "172.30.104.73";
+		private readonly string _server = "sampledb.ccr182ezyuft.us-east-1.rds.amazonaws.com";
 
 		// GET api/values
 		[HttpGet]
